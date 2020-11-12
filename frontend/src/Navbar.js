@@ -4,7 +4,7 @@ import M from 'materialize-css';
 // import { Chip, Navbar as Nav } from 'react-materialize'
 import logo from './navbarLogo.png'
 import './css/navbar.css'
-
+let defaultImg = 'https://png.pngtree.com/png-vector/20190909/ourmid/pngtree-outline-user-icon-png-image_1727916.jpg'
 class Navbar extends Component {
   constructor(){
     super()
@@ -36,7 +36,7 @@ render(){
         <li>
           <Link to={`/profile/${this.props.auth.currentUser.id}`}>
               <div className="usernav-img-wrapper">
-                <img src={this.props.auth.currentUser.avatar_img} className="responsive-img circle" alt="Contact Person" />
+                <img src={this.props.auth.currentUser.avatar_img ?this.props.auth.currentUser.avatar_img : defaultImg } className="responsive-img circle" alt="Contact Person" />
                   <h5 id="beige">{this.props.auth.currentUser.username}</h5>
               </div>
           </Link>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Row, Col, Collection, CollectionItem, Icon, Button } from 'react-materialize';
 import '../css/community.css'
 import Timeago from 'react-timeago';
-
+let defaultPic = 'https://png.pngtree.com/png-vector/20190909/ourmid/pngtree-outline-user-icon-png-image_1727916.jpg'
 let borough = {
   1:{imgUrl:'https://img3.goodfon.com/wallpaper/nbig/a/9b/new-york-city-new-york-1271.jpg',
      communityName:'Manhattan'},
@@ -31,14 +31,14 @@ class CommunityProfile extends Component {
   getActivities = () => {
     const { activity } = this.props;
     let comm_id = this.props.match.params.id;
-
+    let img = activity.avatar_img ? activity.avatar_img : defaultPic
     if (activity) {
       const activityList = activity.map((activity, i) => {
 
         if(activity.type === 'joined') {
           return (
             <CollectionItem className='avatar' key={i +activity.type} >
-              <img src={activity.avatar_img} alt="" className="circle" />
+              <img src={img} alt="" className="circle" />
                 <p className = "title left" >
                 <Link to={`/profile/${activity.usersid}` } className='communityActivity_username'>{activity.username}</Link> has joined the community.
                 </p>
@@ -49,7 +49,7 @@ class CommunityProfile extends Component {
           } else if(activity.type === 'uploaded') {
           return (
             <CollectionItem className='avatar' key={i +activity.type} >
-              <img src={activity.avatar_img} alt="" className="circle" />
+              <img src={img} alt="" className="circle" />
                 <p className = "title left" >
                 <Link to={`/profile/${activity.usersid}` } className='communityActivity_username'>{activity.username}</Link> uploaded a photo to <Link to={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</Link>.
                 </p>
@@ -60,7 +60,7 @@ class CommunityProfile extends Component {
         } else if(activity.type === 'subscribed') {
           return (
             <CollectionItem className='avatar' key={i +activity.type}>
-              <img src={activity.avatar_img} alt="" className="circle" />
+              <img src={img} alt="" className="circle" />
                 <p className = "title left" >
                 <Link to={`/profile/${activity.usersid}` } className='communityActivity_username'>{activity.username}</Link> has subscribed to <Link to={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</Link>.
                 </p>

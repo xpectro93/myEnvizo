@@ -95,12 +95,13 @@ class Signup extends Component {
           <div className='input-field col s6'>
             <label htmlFor="signup_email">Email</label>
               <input
-                type='text'
+                type='email'
                 className="validate"
                 id="'signup_email'"
                 name='email'
                 value={this.state.emailInput}
                 onChange={this.handleChange}
+                required
               />
             </div>
             <div className='input-field col s6'>
@@ -111,6 +112,7 @@ class Signup extends Component {
                 name='username'
                 value={this.state.usernameInput}
                 onChange={this.handleChange}
+                required
               />
             </div>
             <div className ='input-field col s6'>

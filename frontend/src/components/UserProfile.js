@@ -216,7 +216,7 @@ class UserProfile extends Component {
     const userName = userObj ? userObj.username : "";
     // const { users } = this.props;
     //loop through subscritionsForAUser and get goals that the user subscribed
-    let imgUrl = userObj ? userObj.avatar_img : '';
+    let imgUrl = userObj ? userObj.avatar_img ?  userObj.avatar_img : 'https://png.pngtree.com/png-vector/20190909/ourmid/pngtree-outline-user-icon-png-image_1727916.jpg':"";
     // if ( subscriptions.subscripUser ) {
     //   const usersInfo = subscriptions.subscripUser.find(user => {
     //     return user.user_id === parseInt(this.props.match.params.id)
