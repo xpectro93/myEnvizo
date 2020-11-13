@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import '../css/signup.css';
-import ReactS3 from 'react-s3';
 import { Redirect, Link } from 'react-router-dom';
 import { Select } from 'react-materialize';
-import { uploadFile } from 'react-s3';
+
 
 
 import { storage } from '../firebase';

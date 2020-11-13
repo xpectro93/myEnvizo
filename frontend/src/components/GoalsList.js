@@ -5,12 +5,10 @@ import '../css/goalsList.css';
 import Prediction from './Prediction';
 import SubscriberCount from './SubscriberCount';
 
-const subjects = ['Monthly Tonnage', 'Air Pollution', 'Energy Consumption']
+// const subjects = ['Monthly Tonnage', 'Air Pollution', 'Energy Consumption']
 
 class GoalsList extends Component {
-  constructor(props) {
-    super(props);
-  }
+
 
   componentDidMount() {
     this.props.fetchAllGoals();
@@ -41,7 +39,7 @@ class GoalsList extends Component {
   }
 
   render() {
-    let { boroughId, subjects } = this.props;
+    let { boroughId } = this.props;
 
     //first it filters on community id then maps the result
     //map through the goals array and present the goal in a collapsible card.

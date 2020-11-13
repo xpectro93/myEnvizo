@@ -16,8 +16,7 @@ export default class CommunityGoal extends Component {
   }
 
   handleSubscribe = (e) => {
-    let { loggedUser, match } = this.props;
-    let { loggedUserSubId } = this.state;
+    let { loggedUser } = this.props;
     let userId = loggedUser.id;
     let subStr = e.target.id
     let innerText = e.target.innerText.slice(0,3)

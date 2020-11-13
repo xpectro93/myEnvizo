@@ -6,7 +6,6 @@ import { addSubmission } from '../util/util'
 import Puzzle from './Puzzle'
 import '../css/singlegoal.css';
 import ReactS3 from 'react-s3';
-import { uploadFile } from 'react-s3';
 import axios from 'axios'
 // let aws = require('../util/secretAWS.json')
 
