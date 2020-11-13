@@ -4,22 +4,11 @@ import ReactS3 from 'react-s3';
 import { Redirect, Link } from 'react-router-dom';
 import { Select } from 'react-materialize';
 import { uploadFile } from 'react-s3';
-// let aws = require('../util/secretAWS.json')
 
-//fake key to prevent errors
-let aws = {
-  "AWSAccessKeyId":123,
-  "AWSSecretKey":123
-}
 
-//Optional Import
+import { storage } from '../firebase';
 
-const config = {
-    bucketName: 'envizo-img',
-    region: 'us-east-1',
-    accessKeyId: aws["AWSAccessKeyId"],
-    secretAccessKey: aws["AWSSecretKey"]
-}
+
 
 class Signup extends Component {
   state = {
@@ -30,7 +19,8 @@ class Signup extends Component {
     borough:1,
     avatar_img:null,
     error:false,
-    didUpload: false
+    didUpload: false,
+    image:null
           }
 
   componentDidMount(){
@@ -42,6 +32,14 @@ class Signup extends Component {
       [e.target.name]: e.target.value
     })
   }
+  handleUploadChange = e => {
+    if(e.target.files[0]) {
+      this.setState({image:e.target.files[0]})
+    }
+    setTimeout(()=> {
+      console.log(this.state.image)
+    },1000)
+  }
   handleSelect = e => {
     this.setState({
       borough: e.target.value
@@ -49,12 +47,33 @@ class Signup extends Component {
   }
 
   upload = (e) => {
-    ReactS3.uploadFile(e.target.files[0], config)
-            .then((res) => {
-              this.setState({ avatar_img: res.location,
-                              didUpload: true })
-            })
-            .catch(err => console.log(err))
+    e.preventDefault();
+    const { image } = this.state
+
+
+    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+
+    uploadTask.on(
+      "stage_changedd",
+      snapshot => {},
+      error => {
+        console.log(error);
+      },
+      ()=> {
+        storage
+          .ref("images")
+          .child(image.name)
+          .getDownloadURL()
+          .then(url => {
+            this.setState({ avatar_img:url, didUpload: true })
+          
+          })
+          .catch(err => console.log(err))
+
+      }
+    )
+
+
   }
 
   onSubmitNewUser = e => {
@@ -147,21 +166,29 @@ class Signup extends Component {
             </div>
             <div className="file-field input-field">
               <div className="btn-small waves-effect waves-light">
-                <span>Upload</span>
+                <span>Select Image</span>
                   <input
                     type="file"
                     name="avatar"
                     accept=".jpg, .jpeg, .png"
-                    onChange={this.upload}/>
+                    onChange={this.handleUploadChange}/>
+                    
               </div>
-              {this.state.didUpload ? "Photo Uploaded!" : "Choose Photo and Wait to Load ..."}
-              <div className="file-path-wrapper">
-                <input className="file-path validate" name='avatarpath' type="text" />
-              </div>
+              <button className="btn-small waves-effect waves-light" onClick={this.upload}>Upload</button>
+              
+              {this.state.didUpload ? 
+              <>
+              <p>File successfully uploaded</p>
+              <br/>
+              <button className="btn-small waves-effect waves-light" type="submit" name="action">Sign Up
+                <i className="material-icons right">send</i>
+              </button>
+              </>
+              :<h4>Complete form</h4>
+            
+              }
             </div>
-            <button className="btn-small waves-effect waves-light" type="submit" name="action">Sign Up
-              <i className="material-icons right">send</i>
-            </button>
+            
         </form>
         {this.props.isLoggedIn
           ? <Redirect to={`/profile/${this.props.auth.userId}`}></Redirect>
