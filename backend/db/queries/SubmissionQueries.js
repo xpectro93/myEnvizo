@@ -95,11 +95,26 @@ const countSubPerGoal = ( req, res, next) => {
     .catch(err => next(err))
 }
 
+const getLeaderBoard = ( req, res, next ) => {
+  db.any('select COUNT(submissions.user_id) AS "submissions_count", submissions.user_id, users.avatar_img, users.community_id FROM submissions JOIN users ON submissions.user_id = users.id GROUP BY submissions.user_id,users.avatar_img, users.community_id ORDER BY submissions_count DESC LIMIT 25')
+    .then(data => {
+      res.status(200).json({
+        status:'success',
+        message:"Top Submitters",
+        top_users:data
+      })
+    })
+    .catch(err => next(err))
+}
+
+
+
 module.exports = {
   getAllSubmissions,
   getAllSubmissionForSingleGoal,
   getAllSubmissionsPerUserPerGoal,
   createNewSubmission,
   deleteSubmission,
-  countSubPerGoal
+  countSubPerGoal,
+  getLeaderBoard
 }

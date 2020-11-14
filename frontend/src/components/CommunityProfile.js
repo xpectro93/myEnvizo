@@ -21,6 +21,7 @@ class CommunityProfile extends Component {
   componentDidMount() {
     this.props.fetchAllCommunityActivity(this.props.match.params.id);
     this.props.fetchAllGoalsPerCommunity(this.props.match.params.id);
+    console.log('mah props', this.props)
   }
 
   click = e => {

@@ -5,29 +5,17 @@ import { getSingleSubscriptionIdForUserAndGoal, addSubscription, deleteSubscript
 import { addSubmission } from '../util/util'
 import Puzzle from './Puzzle'
 import '../css/singlegoal.css';
-import ReactS3 from 'react-s3';
 import axios from 'axios'
-// let aws = require('../util/secretAWS.json')
 
-// fake key to prevent errors
-let aws = {
-  "AWSAccessKeyId":123,
-  "AWSSecretKey":123
-}
-
-const config = {
-    bucketName: 'envizo-img',
-    region: 'us-east-1',
-    accessKeyId: aws["AWSAccessKeyId"],
-    secretAccessKey: aws["AWSSecretKey"]
-}
+import { storage } from '../firebase';
 
 export default class SingleGoal extends Component {
   state = {
-    loggedUserSubId: "",
-    didUpload: false,
-    goalInfo:[]
-  }
+      loggedUserSubId: "",
+      didUpload: false,
+      image:null,
+      goalInfo:[]
+    }
 
   componentDidMount() {
     let { loggedUser } = this.props;
@@ -82,23 +70,47 @@ export default class SingleGoal extends Component {
    }
    return obj
   }
-
+  handleUploadChange = e => {
+    if(e.target.files[0]) {
+      this.setState({image:e.target.files[0]})
+    }
+  }
 
   handleUpload = (e) => {
     let { loggedUser, match, submissions } = this.props;
     let { loggedUserSubId } = this.state;
     let sub = { img_url:"" , goal_id: match.params.goal_id, sub_count: submissions.length, subscriptions_id: loggedUserSubId }
 
-    ReactS3.uploadFile(e.target.files[0], config)
-            .then((res) => {
-              sub.img_url = res.location;
-              this.setState({ didUpload: true })
-              addSubmission(loggedUser.id, sub)
-                .then(() => {
-                  this.props.fetchSubmissionsPerGoal(match.params.goal_id)
-                })
+    e.preventDefault();
+    const { image } = this.state
+
+
+    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+
+      uploadTask.on(
+        "stage_changed",
+        snapshot => {},
+        error => {
+          console.log(error);
+        },
+        ()=> {
+          storage
+            .ref("images")
+            .child(image.name)
+            .getDownloadURL()
+            .then(url => {
+                 this.setState({didUpload: true })
+                 sub.img_url = url;
+                 addSubmission(loggedUser.id, sub)
+            })
+            .then(()=> {
+              this.props.fetchSubmissionsPerGoal(match.params.goal_id)
             })
             .catch(err => console.log(err))
+
+        }
+      )
+
   }
 
   refreshSubscriptions = (userId, goalId) => {
@@ -152,12 +164,14 @@ export default class SingleGoal extends Component {
                                           type="file"
                                           name="avatar"
                                           accept=".jpg, .jpeg, .png"
-                                          onChange={this.handleUpload}
+                                          onChange={this.handleUploadChange}
                                         />
+                                       
                                     </div>
                                     <div className="file-path-wrapper">
                                       <input className="file-path validate" name='avatarpath' type="text" />
                                     </div>
+                                    {this.state.image? <button className="btn-small waves-effect waves-light" onClick={this.handleUpload}> Upload</button> :null}
                                   </div>)
                                   : <div className="file-field input-field"><h5>Subscribe to upload a photo!</h5></div>
               }
@@ -171,6 +185,3 @@ export default class SingleGoal extends Component {
     )
   }
 }
-
-// // subscribe function
-// // photo upload

@@ -3,6 +3,7 @@ import { VisualDisplay } from './VisualDisplay'
 import { Tab, Tabs, Select } from 'react-materialize'
 import '../css/home.css';
 import GoalsListContainer from '../containers/GoalsListContainer';
+import Leaderboard from './Leaderboard';
 
 
 class Home extends Component {
@@ -80,7 +81,7 @@ class Home extends Component {
             </Tab>
 
             <Tab title="Air Pollution">
-              <div className="container"><h5>Coming soon ...</h5></div>
+              <div className="container"><Leaderboard/></div>
             </Tab>
             <Tab title="Energy Consumption">
               <div className="container"><h5>Coming soon ...</h5></div>

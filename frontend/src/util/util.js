@@ -9,10 +9,11 @@ export const getAllUsersPerGoal = (id) => axios.get(`/api/goals/${id}/users`)
 export const getAllSubscriptions = () => axios.get("/api/subscriptions/")
 export const getAllUsers = () => axios.get('/api/users')
 export const getAllSubmissionsPerGoal = (id) => axios.get(`/api/submissions/goal/${id}`)
-export const getAllSubscriptionsPerGoal = (id) => axios.get(`/api/subscriptions/goal/${id}`)
+export const getAllSubscriptionsPerGoal = (id) => axios.get(`/api/subscriptions/goal/${id}`);
 
+//submissions
 export const addSubmission = (userId, sub) => axios.post(`/api/submissions/user/${userId}`, sub)
-
+export const getLeaderboard = () => axios.get('/api/submissions/top');
 //User
 export const getSingleSubscriptionIdForUserAndGoal = (userId, goalId) => axios.get(`/api/subscriptions/${userId}/${goalId}`)
 export const addSubscription = (subscription) => axios.post(`/api/subscriptions/new`, subscription)

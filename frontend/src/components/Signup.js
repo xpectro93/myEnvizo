@@ -20,7 +20,7 @@ class Signup extends Component {
     error:false,
     didUpload: false,
     image:null
-          }
+  }
 
   componentDidMount(){
   this.props.checkAuthenticateStatus()
@@ -35,9 +35,6 @@ class Signup extends Component {
     if(e.target.files[0]) {
       this.setState({image:e.target.files[0]})
     }
-    setTimeout(()=> {
-      console.log(this.state.image)
-    },1000)
   }
   handleSelect = e => {
     this.setState({
@@ -53,7 +50,7 @@ class Signup extends Component {
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
 
     uploadTask.on(
-      "stage_changedd",
+      "stage_changed",
       snapshot => {},
       error => {
         console.log(error);
