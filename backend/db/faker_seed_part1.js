@@ -18,7 +18,7 @@ for (let i = 0; i < 25; i++) {
   let password_digest = faker.internet.password();
   let email = faker.internet.email();
   let community_id = Math.floor(Math.random() * 5) + 1;
-  let avatar_img = `https://api.adorable.io/avatars/200/${email}`
+  let avatar_img = `https://robohash.org/${email}`
   let str = `('${username}', '${password_digest}', '${email}' ,${community_id}, '${avatar_img}')`
   users.push(str)
 }

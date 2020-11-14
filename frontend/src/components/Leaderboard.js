@@ -28,9 +28,9 @@ export default function Leaderboard (){
            topUsers.map(user => {
                console.log(user)
             return (
-                <li><h3>{user.username}</h3>
+                <li className="placing" key={user.username} ><h3>{user.username}</h3>
                     <img src={user.avatar_img} alt="top user"/>
-                    <h4>{user.community_id}</h4>
+                    <h4>{communityIds[user.community_id]}</h4>
                     <h4>{user.submission_count}</h4>
                 </li>
             )
