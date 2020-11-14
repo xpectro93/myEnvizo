@@ -29,7 +29,7 @@ export const borough = {
        communityName:'Manhattan'},
     2:{imgUrl:'https://pbs.twimg.com/media/Drb0hVBWwAUvJSr.jpg',
        communityName:'Queens'},
-    3:{imgUrl:'https://cdn-assets.alltrails.com/uploads/photo/image/19326941/extra_large_a08958fc25b15bb98cf4e1d17f1443c1.jpg',
+    3:{imgUrl:'https://firebasestorage.googleapis.com/v0/b/upload-80d65.appspot.com/o/images%2Fbronx.jpg?alt=media&token=03e3a871-5f4d-46a3-952e-2573d9397fd5',
        communityName:'Bronx'},
     4:{imgUrl:'http://s1.1zoom.net/big0/603/Australia_Rivers_Boats_Brooklyn_Hawkesbury_River_540885_1280x800.jpg',
        communityName:'Brooklyn'},

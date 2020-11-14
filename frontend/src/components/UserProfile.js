@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Row, Col, Collection, CollectionItem, Icon, Button } from 'react-materialize';
 import { Link } from 'react-router-dom';
+import { borough } from "../util/util.js"
 import '../css/user.css';
 import {
   FacebookIcon,
@@ -13,13 +14,7 @@ import {
 } from 'react-share';
 import Timeago from 'react-timeago';
 
-let borough = {
-  1:'https://img3.goodfon.com/wallpaper/nbig/a/9b/new-york-city-new-york-1271.jpg',
-  2:'https://pbs.twimg.com/media/Drb0hVBWwAUvJSr.jpg',
-  3:'https://cdn-assets.alltrails.com/uploads/photo/image/19326941/extra_large_a08958fc25b15bb98cf4e1d17f1443c1.jpg',
-  4:'http://s1.1zoom.net/big0/603/Australia_Rivers_Boats_Brooklyn_Hawkesbury_River_540885_1280x800.jpg',
-  5:'https://cdn2.vox-cdn.com/uploads/chorus_asset/file/6695497/07_Kensinger_Mill_Creek_DSC_8839.0.jpg'
-}
+
 
 class UserProfile extends Component {
 
@@ -214,20 +209,9 @@ class UserProfile extends Component {
     const routeId = parseInt(match.params.id);
     const userObj = users.find(user => user.id === routeId)
     const userName = userObj ? userObj.username : "";
-    // const { users } = this.props;
-    //loop through subscritionsForAUser and get goals that the user subscribed
+  
     let imgUrl = userObj ? userObj.avatar_img ?  userObj.avatar_img : 'https://png.pngtree.com/png-vector/20190909/ourmid/pngtree-outline-user-icon-png-image_1727916.jpg':"";
-    // if ( subscriptions.subscripUser ) {
-    //   const usersInfo = subscriptions.subscripUser.find(user => {
-    //     return user.user_id === parseInt(this.props.match.params.id)
-    //   })
-    //   if (usersInfo) {
-    //     imgUrl = usersInfo.avatar_img
-    //     console.log(imgUrl);
-    //   } else {
-    //     imgUrl = 'subscribe to show photo'
-    //   }
-    // }
+
 
     const goalsList = subscriptions.subscripUser.length ? subscriptions.subscripUser.map(goal => {
       return (
@@ -268,7 +252,7 @@ class UserProfile extends Component {
           <Col l={4} className="white push-l1 m10 s12 black-text z-depth-3 no-pad">
 
                 <div className="pic-container">
-                  <img src={community[0]?borough[community[0].id]:null} alt="borough" className='borough responsive-img' />
+                  <img src={community[0]?borough[community[0].id].imgUrl:null} alt="borough" className='borough responsive-img' />
                   <span className="borough-title">
                     <Link to={community.length ?  `/community/${community[0].id}` : 'not available' }>
                       { community.length ? <h4 className ='boroughName' id="bold">{community[0].name}</h4> : 'Loading'}
