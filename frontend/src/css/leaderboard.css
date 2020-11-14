@@ -26,6 +26,20 @@
     text-shadow: 0px 0px 2px #07356B;
     color:white
 }
+.placing:nth-child(1) p {
+    color: rgb(245, 243, 112);
+    text-shadow: 0px 0px 3px rgb(245, 243, 112);
+}
+.placing:nth-child(2) p{
+    color: rgb(110, 142, 151);
+    text-shadow: 0px 0px 3px  rgb(110, 142, 151);
+}
+.placing:nth-child(3) p{
+    color: rgb(216, 122, 15);
+    text-shadow: 0px 0px 3px rgb(216, 122, 15);
+}
+
+
 @media only screen and (max-width: 600px) {
     .placing-img-container img {
         width:100px;
