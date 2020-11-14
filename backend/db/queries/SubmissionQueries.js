@@ -96,7 +96,7 @@ const countSubPerGoal = ( req, res, next) => {
 }
 
 const getLeaderBoard = ( req, res, next ) => {
-  db.any('select COUNT(submissions.user_id) AS "submissions_count", submissions.user_id, users.avatar_img, users.community_id FROM submissions JOIN users ON submissions.user_id = users.id GROUP BY submissions.user_id,users.avatar_img, users.community_id ORDER BY submissions_count DESC LIMIT 25')
+  db.any('select COUNT(submissions.user_id) AS "submissions_count", submissions.user_id, users.avatar_img, users.username, users.community_id FROM submissions JOIN users ON submissions.user_id = users.id GROUP BY submissions.user_id,users.avatar_img, users.community_id, users.username ORDER BY submissions_count DESC LIMIT 25')
     .then(data => {
       res.status(200).json({
         status:'success',
