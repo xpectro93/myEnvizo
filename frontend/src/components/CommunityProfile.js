@@ -3,19 +3,9 @@ import { Link } from 'react-router-dom'
 import { Row, Col, Collection, CollectionItem, Icon, Button } from 'react-materialize';
 import '../css/community.css'
 import Timeago from 'react-timeago';
+import { borough } from "../util/util.js"
 let defaultPic = 'https://png.pngtree.com/png-vector/20190909/ourmid/pngtree-outline-user-icon-png-image_1727916.jpg'
-let borough = {
-  1:{imgUrl:'https://img3.goodfon.com/wallpaper/nbig/a/9b/new-york-city-new-york-1271.jpg',
-     communityName:'Manhattan'},
-  2:{imgUrl:'https://pbs.twimg.com/media/Drb0hVBWwAUvJSr.jpg',
-     communityName:'Queens'},
-  3:{imgUrl:'https://cdn-assets.alltrails.com/uploads/photo/image/19326941/extra_large_a08958fc25b15bb98cf4e1d17f1443c1.jpg',
-     communityName:'Bronx'},
-  4:{imgUrl:'http://s1.1zoom.net/big0/603/Australia_Rivers_Boats_Brooklyn_Hawkesbury_River_540885_1280x800.jpg',
-     communityName:'Brooklyn'},
-  5:{imgUrl:'https://cdn2.vox-cdn.com/uploads/chorus_asset/file/6695497/07_Kensinger_Mill_Creek_DSC_8839.0.jpg',
-     communityName:'Staten Island'}
-}
+
 
 class CommunityProfile extends Component {
   componentDidMount() {

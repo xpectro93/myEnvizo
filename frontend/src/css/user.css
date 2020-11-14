@@ -4,11 +4,6 @@
   height: 120px;
 }
 
-/* .l2 {
-  border: solid 1px black;
-  background-color: white;
-} */
-
 .joined {
   display: flex;
   flex-direction: row;
@@ -30,9 +25,6 @@
 .user_profile {
   margin-top: 80px;
 }
-.user-profile .row .center{
-  /* margin:auto; */
-}
 
 .share_buttons:hover {
   cursor:pointer;
@@ -48,12 +40,7 @@ p {
 .borough {
   width:100%
 }
-/* .profile-pic {
-  position:absolute;
-  left:35%;
-  top:75%;
-  border: 2px solid white;
-} */
+
 .profile-pic {
   z-index: 5;
   margin-top: -70px;
@@ -79,9 +66,7 @@ h5 {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-/* .col .row {
-  float:left;
-} */
+
 .row .col.no-pad  {
   padding:0px;
 }

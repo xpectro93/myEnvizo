@@ -80,7 +80,7 @@ class Home extends Component {
               </div>
             </Tab>
 
-            <Tab title="Air Pollution">
+            <Tab title="Leaderboard">
               <div className="container"><Leaderboard/></div>
             </Tab>
             <Tab title="Energy Consumption">
