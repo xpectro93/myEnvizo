@@ -6,7 +6,22 @@ import Timeago from 'react-timeago';
 import { borough } from "../util/util.js"
 let defaultPic = 'https://png.pngtree.com/png-vector/20190909/ourmid/pngtree-outline-user-icon-png-image_1727916.jpg'
 
+const userAction = {
+  joined:{
+    link: () =><>has joined the community.</>
+  },
+  uploaded:{
+    link:(activity)=><> <Link to={`/profile/${activity.usersid}` } className='communityActivity_username'>{activity.username}</Link> uploaded a photo to <Link to={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</Link>.</>
+  },
+  subscribed: {
+    link: (activity)=> <> <Link to={`/profile/${activity.usersid}` } className='communityActivity_username'>{activity.username}</Link> has subscribed to <Link to={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</Link>.</>
+  },
+  milestone: {
+    actionText: "has completed",
+    link: (activity)=>  <>{activity.name} has completed <Link to={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</Link> goal.</>
+  }
 
+}
 class CommunityProfile extends Component {
   componentDidMount() {
     this.props.fetchAllCommunityActivity(this.props.match.params.id);
@@ -24,54 +39,16 @@ class CommunityProfile extends Component {
     let img = activity.avatar_img ? activity.avatar_img : defaultPic
     if (activity) {
       const activityList = activity.map((activity, i) => {
+        return (
+          <CollectionItem className='avatar' key={i +activity.type} >
+            <img src={img} alt="" className="circle" />
+            <p className = "title left" >
+            {userAction[activity.type].link(activity)}
+            </p>
+            <br />
+            <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
+          </CollectionItem>)
 
-        if(activity.type === 'joined') {
-          return (
-            <CollectionItem className='avatar' key={i +activity.type} >
-              <img src={img} alt="" className="circle" />
-                <p className = "title left" >
-                <Link to={`/profile/${activity.usersid}` } className='communityActivity_username'>{activity.username}</Link> has joined the community.
-                </p>
-                <br />
-                <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
-            </CollectionItem>
-          )
-          } else if(activity.type === 'uploaded') {
-          return (
-            <CollectionItem className='avatar' key={i +activity.type} >
-              <img src={img} alt="" className="circle" />
-                <p className = "title left" >
-                <Link to={`/profile/${activity.usersid}` } className='communityActivity_username'>{activity.username}</Link> uploaded a photo to <Link to={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</Link>.
-                </p>
-                <br />
-                <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
-            </CollectionItem>
-          )
-        } else if(activity.type === 'subscribed') {
-          return (
-            <CollectionItem className='avatar' key={i +activity.type}>
-              <img src={img} alt="" className="circle" />
-                <p className = "title left" >
-                <Link to={`/profile/${activity.usersid}` } className='communityActivity_username'>{activity.username}</Link> has subscribed to <Link to={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</Link>.
-                </p>
-                <br />
-                <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
-            </CollectionItem>
-          )
-        } else if(activity.type === 'milestone') {
-          return (
-            <CollectionItem className='avatar' key={i +activity.type} >
-              <img src={borough[comm_id].imgUrl} alt="" className="circle" />
-                <p className = "title left" >
-                {activity.name} has completed <Link to={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</Link> goal.
-                </p>
-                <br />
-                <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
-            </CollectionItem>
-          )
-        } else {
-          return (<p>No Activities yet</p>)
-        };
       })
       return activityList;
       }
@@ -128,6 +105,7 @@ class CommunityProfile extends Component {
               </CollectionItem>
             </Collection>
           </Col>
+          
           {/* Activityside */}
           <Col l={5} className='offset-l2 m10 s12 z-depth-3 community-activity'>
             <Collection header='Community Feed'>

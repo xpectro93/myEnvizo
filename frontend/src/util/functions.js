@@ -30,6 +30,7 @@ export const isValidPunctuation = input => {
 
 export const validateEmail = email => {
     if(!email) return false;
+    //eslint-disable-next-line
     let regExFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     let isOnlyLatinChar = email.match(regExFormat);
     let [username, domain] = email.split('@')

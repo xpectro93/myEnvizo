@@ -70,9 +70,7 @@ function Signup (props) {
     setTimeout(()=> {
       passRef.current.focus()
     },500)
-    
-    
-    
+
   }
   useEffect(()=> {
     console.log(props)
@@ -84,7 +82,7 @@ function Signup (props) {
       <h4>Sign Up</h4>
         <label htmlFor="progress">Progress{` ${progress}%`}</label>
         <div className={"my-range"}>
-          <div className={"progress"} style={{width:`${progress}%`,background:`${ progress === 100 ? "rgb(1,53,107)" : "rgb(142,228,175)"}`}}  name="progress">  </div>
+          <div className={"signup-progress"} style={{width:`${progress}%`,background:`${ progress === 100 ? "rgb(1,53,107)" : "rgb(142,228,175)"}`}}  name="progress">  </div>
         </div>
       </div>
 

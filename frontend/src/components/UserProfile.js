@@ -49,7 +49,7 @@ class UserProfile extends Component {
         community: res.data.community
       })
     })
-    .catch(err => Error)
+    .catch(err => console.log(err))
   }
 
   getActivities = () => {
@@ -98,7 +98,7 @@ class UserProfile extends Component {
           )
         } else if(activity.type === 'uploaded') {
         return (
-          <CollectionItem className='l2' key={activity.id}>
+          <CollectionItem className='l2' key={activity.id+"joined"}>
             <div className='joined'>
               <div>
                 <p className='left'>{userName} {userWord} uploaded a photo to <a href={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</a>.</p><br/>

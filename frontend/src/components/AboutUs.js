@@ -71,8 +71,8 @@ export default class  AboutUs extends Component {
               {member.about}
               </p>
               <div className='contact'>
-              <a target="_blank" href={member.github}><img alt='github' src="https://img.icons8.com/ios/50/000000/github-filled.png"/></a>
-              <a target="_blank" href={member.linkedIn}><img alt='linkedin' src="https://img.icons8.com/ios/50/000000/linkedin-filled.png"/></a>
+              <a target="_blank" rel="noopener noreferrer" href={member.github}><img alt='github' src="https://img.icons8.com/ios/50/000000/github-filled.png"/></a>
+              <a target="_blank" rel="noopener noreferrer" href={member.linkedIn}><img alt='linkedin' src="https://img.icons8.com/ios/50/000000/linkedin-filled.png"/></a>
               </div>
             </div>
           )
