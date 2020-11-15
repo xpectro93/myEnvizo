@@ -8,7 +8,7 @@ export const upload = async(data, callback)=> {
         error => console.log(error),
             async ()=> {
                 let url = await storage.ref("images").child(data.name).getDownloadURL()
-               await callback(url)
+                await callback(url)
                 
 
             }
