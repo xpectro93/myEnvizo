@@ -3,7 +3,7 @@ import '../css/signup.css';
 import { Redirect, Link } from 'react-router-dom';
 // import { Select } from 'react-materialize';
 
-import { upload } from '../util/functions.js'
+import { upload, validateEmail, validateUsername, validateSelect, areEqual } from '../util/functions.js'
 
 const formDivCss = "input-field col s6"
 
@@ -17,7 +17,21 @@ function Signup (props) {
     e.preventDefault();
     // debugger
     const { email, username, password, passwordConfirm, borough } = e.target.parentElement.parentElement.elements;
-    console.log( email.value, username.value, password.value, passwordConfirm.value, borough.value)
+    console.log( email.value, username.value, password.value, passwordConfirm.value, borough.value);
+    let currentProgress = 0;
+    const emailPoints = validateEmail(email.value) ? currentProgress+=20 : 0;
+
+    const usernamePoints = validateUsername(username.value) ?  currentProgress+=20 : 0;
+
+    const boroughPoints = validateSelect(borough.value) ? currentProgress+=20 : 0;
+    
+    const passwordPoints = areEqual(passwordConfirm.value) ? currentProgress+=20 : 0;
+
+    const sum = emailPoints + usernamePoints + boroughPoints + passwordPoints;
+    setProgress(sum)
+    /*
+    borough id = int
+    */
     // let newuserData = {
     //   username: this.state.username,
     //   password:this.state.password,
@@ -50,7 +64,6 @@ function Signup (props) {
     console.log(props)
     props.checkAuthenticateStatus()
   },[])
-  console.log(image)
   return(
     <div className='container SignUpContainer'>
       <div className='container'>
@@ -81,7 +94,6 @@ function Signup (props) {
         <label htmlFor="username">Username</label>
         <input
           type='text'
-          className='signup_username'
           name='username'
           required
         />
@@ -98,14 +110,11 @@ function Signup (props) {
       </select>
 
       </div>
-        
- 
-      
+
       <div className={formDivCss}>
         <label htmlFor="password">Password</label>
         <input
           type='password'
-          className='signup_password'
           name='password'
           required
         />
@@ -115,7 +124,6 @@ function Signup (props) {
         <label htmlFor="passwordConfirm">Confirm Password</label>
         <input
           type='password'
-          className='confirm_password'
           name='passwordConfirm'
           required
         />
@@ -145,7 +153,7 @@ function Signup (props) {
     
       </div>
       <button 
-        className={`btn-large waves-effect waves-light ${hasUploaded ? "" : "disabled"}`} 
+        className={`btn-large waves-effect waves-light ${hasUploaded && progress === 100 ? "" : "disabled"}`} 
         type="submit" name="action">Sign Up<i className="material-icons right">send</i>
       </button>
     </form>
@@ -153,7 +161,7 @@ function Signup (props) {
       <Redirect to={`/profile/${props.auth.userId}`}></Redirect>
       : null
     }
-    {/* {this.state.error?<p>Check Input Entries</p>:null} */}
+
     <div className="container">
       <h4>Already a member? <Link to="/login">Login</Link></h4>
     </div>
