@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { VisualDisplay } from './VisualDisplay'
-import { Tab, Tabs, Select } from 'react-materialize'
+import { Tab, Tabs } from 'react-materialize'
 import '../css/home.css';
 import GoalsListContainer from '../containers/GoalsListContainer';
 import Leaderboard from './Leaderboard';
@@ -40,14 +40,14 @@ class Home extends Component {
     return(
       <div className="container borough-select">
         <div className ='input-field col s6'>
-          <Select name='borough' onChange={this.handleChange}>
+          <select name='borough'  className={"select-borough"} onChange={this.handleChange}>
             <option value='0'>Select Borough</option>
             <option value='1'>Manhattan</option>
             <option value='2'>Queens</option>
             <option value='3'>Bronx</option>
             <option value='4'>Brooklyn</option>
             <option value='5'>Staten Island</option>
-          </Select>
+          </select>
         </div>
       </div>
     )

@@ -62,9 +62,9 @@ export default class  AboutUs extends Component {
       <div className='container about'>
 
       <h2>Our Mission</h2>
-      <p className='flow-text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <h2>About Us</h2>
-      <p className='flow-text'> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p className='flow-text'>We care about the environment, and we wanted to create an app to encourage users to change their habits by increasing visibility.
+        We believe that if users see their impact, they will be empowered to act and engage with their communities.</p>
+      
       <h2 ref={this.topDiv}>Meet The Envizo Team</h2>
 
       <div className="us">

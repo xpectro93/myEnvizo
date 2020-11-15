@@ -18,6 +18,9 @@ a {
 a.active {
   border-bottom: 2px solid blue;
 }
+select {
+  display:none;
+}
 
 div#content {
   display: flex;

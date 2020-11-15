@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../css/signup.css';
 import { Redirect, Link } from 'react-router-dom';
-// import { Select } from 'react-materialize';
 
 import { upload, validateEmail, validateUsername, validateSelect, areEqual, checkEvent } from '../util/functions.js'
 
@@ -12,30 +11,28 @@ const formDivCss = "input-field col s6"
 function Signup (props) {
   const [ image, setImage ] = useState(null);
   const [ progress, setProgress ] = useState(0);
-  const [ hasUploaded, setHasUploaded ] =useState(false)
+  const [ hasUploaded, setHasUploaded ] =useState(false);
+  const passRef = useRef(null)
   const submitNewUser = e => {
-    e.preventDefault();
-    if(checkEvent(e)) {
-    console.log('returning')
+
+      e.preventDefault();
+      if(checkEvent(e)) {
       return
     }
     const { email, username, password, passwordConfirm, borough } = e.target.parentElement.parentElement.elements;
-    console.log( email.value, username.value, password.value, passwordConfirm.value, borough.value);
+
     let currentProgress = 0;
+
     currentProgress += validateEmail(email.value) ? 20 : 0;
-    console.log('email equal',currentProgress)
 
     currentProgress += validateUsername(username.value) ?  20 : 0;
-    console.log('usyerr equal',currentProgress)
 
     currentProgress += validateSelect(borough.value) ? 20 : 0;
-    console.log('via equal',currentProgress)
-    
+ 
     currentProgress += areEqual(passwordConfirm.value,password.value) ? 20 : 0;
-    console.log('after equal',currentProgress)
+
     currentProgress += hasUploaded ? 20: 0;
 
-    console.log(currentProgress)
     setProgress(currentProgress)
     /*
     borough id = int
@@ -65,9 +62,15 @@ function Signup (props) {
   }
   const uploadImage = e => {
     e.preventDefault();
+    e.persist();
     upload(image, setImage);
     setHasUploaded(true);
-    submitNewUser(e)
+    setTimeout(()=> {
+      passRef.current.focus()
+    },1000)
+    
+    
+    
   }
   useEffect(()=> {
     console.log(props)
@@ -87,7 +90,7 @@ function Signup (props) {
         <label htmlFor="volume">Progress{` ${progress}%`}</label>
       </div>
 
-    <form className={`${formDivCss} formContainer`}onBlur={submitNewUser}>
+    <form className={`${formDivCss} formContainer`} onFocus={submitNewUser} onBlur={submitNewUser}>
       <div className={formDivCss}>
         <label htmlFor="signup_email">Email</label>
           <input
@@ -110,12 +113,12 @@ function Signup (props) {
 
       <div className={formDivCss}>
       <select name='borough' required>
-          <option value='0'>Select Borough</option>
-          <option value='1'>Manhattan</option>
-          <option value='2'>Queens</option>
-          <option value='3'>Bronx</option>
-          <option value='4'>Brooklyn</option>
-          <option value='5'>Staten Island</option>
+        <option value='0'>Select Borough</option>
+        <option value='1'>Manhattan</option>
+        <option value='2'>Queens</option>
+        <option value='3'>Bronx</option>
+        <option value='4'>Brooklyn</option>
+        <option value='5'>Staten Island</option>
       </select>
 
       </div>
@@ -134,6 +137,7 @@ function Signup (props) {
         <input
           type='password'
           name='passwordConfirm'
+          ref={passRef}
           required
         />
       </div>
@@ -161,10 +165,12 @@ function Signup (props) {
         </>}
     
       </div>
+      <div className={formDivCss} style={{display:"flex", justifyContent:"center"}}>
       <button 
         className={`btn-large waves-effect waves-light ${hasUploaded && progress === 100 ? "" : "disabled"}`} 
         type="submit" name="action">Sign Up<i className="material-icons right">send</i>
       </button>
+      </div>
     </form>
     {props.isLoggedIn ? 
       <Redirect to={`/profile/${props.auth.userId}`}></Redirect>
