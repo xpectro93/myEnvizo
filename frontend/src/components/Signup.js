@@ -1,9 +1,9 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/signup.css';
 import { Redirect, Link } from 'react-router-dom';
 // import { Select } from 'react-materialize';
 
-import { upload, validateEmail, validateUsername, validateSelect, areEqual } from '../util/functions.js'
+import { upload, validateEmail, validateUsername, validateSelect, areEqual, checkEvent } from '../util/functions.js'
 
 const formDivCss = "input-field col s6"
 
@@ -15,20 +15,28 @@ function Signup (props) {
   const [ hasUploaded, setHasUploaded ] =useState(false)
   const submitNewUser = e => {
     e.preventDefault();
-    // debugger
+    if(checkEvent(e)) {
+    console.log('returning')
+      return
+    }
     const { email, username, password, passwordConfirm, borough } = e.target.parentElement.parentElement.elements;
     console.log( email.value, username.value, password.value, passwordConfirm.value, borough.value);
     let currentProgress = 0;
-    const emailPoints = validateEmail(email.value) ? currentProgress+=20 : 0;
+    currentProgress += validateEmail(email.value) ? 20 : 0;
+    console.log('email equal',currentProgress)
 
-    const usernamePoints = validateUsername(username.value) ?  currentProgress+=20 : 0;
+    currentProgress += validateUsername(username.value) ?  20 : 0;
+    console.log('usyerr equal',currentProgress)
 
-    const boroughPoints = validateSelect(borough.value) ? currentProgress+=20 : 0;
+    currentProgress += validateSelect(borough.value) ? 20 : 0;
+    console.log('via equal',currentProgress)
     
-    const passwordPoints = areEqual(passwordConfirm.value) ? currentProgress+=20 : 0;
+    currentProgress += areEqual(passwordConfirm.value,password.value) ? 20 : 0;
+    console.log('after equal',currentProgress)
+    currentProgress += hasUploaded ? 20: 0;
 
-    const sum = emailPoints + usernamePoints + boroughPoints + passwordPoints;
-    setProgress(sum)
+    console.log(currentProgress)
+    setProgress(currentProgress)
     /*
     borough id = int
     */
@@ -59,6 +67,7 @@ function Signup (props) {
     e.preventDefault();
     upload(image, setImage);
     setHasUploaded(true);
+    submitNewUser(e)
   }
   useEffect(()=> {
     console.log(props)

@@ -52,6 +52,23 @@ export const validateEmail = email => {
   }
 export const validateUsername = username => username.length > 1 && username.length < 33; 
 
-export const areEqual = (string1, string2) => string1 === string2;
+export const areEqual = (string1, string2) => {
+    if(string1 !== "")
+    return string1 === string2
+};
 
 export const validateSelect = option => Number(option) !== 0
+
+export const checkEvent = e => {
+    if(e.target &&
+        e.target.parentElement &&
+        e.target.parentElement.parentElement &&
+        e.target.parentElement.parentElement.elements
+        ) {
+            return false;
+        }
+    else {
+        return true
+    };
+
+}
