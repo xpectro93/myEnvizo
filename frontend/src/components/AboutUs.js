@@ -1,53 +1,46 @@
 import React,  { Component } from 'react';
 import '../css/aboutus.css'
 
+const theTeam = [
+  {
+    name:"Leo Lu",
+    github:"https://github.com/Godsby",
+    picture: "https://avatars3.githubusercontent.com/u/43789625?s=460&v=4",
+    about:"Full Stack Engineer. Like our user Theresa (dudette), he cares about the next generation.",
+    linkedIn:'https://www.linkedin.com/in/followingdreams/'
+  },
+  {
+      name:"Michell Tejada",
+      github:"https://github.com/mitejada",
+      picture:"https://avatars3.githubusercontent.com/u/43785032?s=460&v=4",
+      about:"Full Stack Engineer. Ask her anything about React and sports",
+      linkedIn:"https://www.linkedin.com/in/michell-tejada-8a78b5174/"
+    }
+  ,
+  {
+      name:"Rinat Tregerman",
+      github:"https://github.com/RinatTr",
+      picture:"https://avatars3.githubusercontent.com/u/43793455?s=460&u=132ff4d54d2e18886d2775b4142cd3f8af8482dc&v=4",
+      about:"Full Stack Engineer. Her code is music to our ears.",
+      linkedIn:"https://www.linkedin.com/in/rinat-tregerman/"
+   
+  },
+  {
+      name:"Jonathan Andrade",
+      github:"https://github.com/RinatTr",
+      picture:"https://avatars1.githubusercontent.com/u/43793627?s=460&u=6c90232d2632969d78cda786866ad06938a5847f&v=4",
+      about:"Full Stack Engineer. Programmer at day, gamer at night.",
+      linkedIn:"https://www.linkedin.com/in/xpectro93/"
+    
+  }
 
+
+]
 export default class  AboutUs extends Component {
   constructor(){
     super()
-    this.state ={}
-    this.jonDiv = React.createRef()
-    this.rinatDiv = React.createRef()
-    this.michellDiv = React.createRef()
-    this.leoDiv = React.createRef()
     this.topDiv =React.createRef()
   }
-  clickJon = e => {
-    //.current is verification that your element has rendered
-    if (this.jonDiv.current) {
-      this.jonDiv.current.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest"
-      });
-    }
-  };
-  clickRinat = e => {
-    //.current is verification that your element has rendered
-    if (this.rinatDiv.current) {
-      this.rinatDiv.current.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest"
-      });
-    }
-  };
-  clickMichell = e => {
-    //.current is verification that your element has rendered
-    if (this.michellDiv.current) {
-      this.michellDiv.current.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest"
-      });
-    }
-  };
-  clickLeo = e => {
-    //.current is verification that your element has rendered
-    if (this.leoDiv.current) {
-      this.leoDiv.current.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest"
-      });
-    }
-  };
   clickTop = e => {
     if (this.topDiv.current) {
       this.topDiv.current.scrollIntoView({
@@ -61,74 +54,33 @@ export default class  AboutUs extends Component {
     return (
       <div className='container about'>
 
-      <h2>Our Mission</h2>
+      <h2  ref={this.topDiv} >Our Mission</h2>
       <p className='flow-text'>We care about the environment, and we wanted to create an app to encourage users to change their habits by increasing visibility.
         We believe that if users see their impact, they will be empowered to act and engage with their communities.</p>
       
-      <h2 ref={this.topDiv}>Meet The Envizo Team</h2>
+      <h2 >Meet The Envizo Team</h2>
 
       <div className="us">
-
-      <div className="us-buttons hide-on-med-and-up">
-      <button  className="btn waves-effect waves-light"onClick={this.clickJon}>Jon</button>
-      <button  className="btn waves-effect waves-light"onClick={this.clickRinat}>Rinat</button>
-      <button  className="btn waves-effect waves-light"onClick={this.clickMichell}>Michell</button>
-      <button  className="btn waves-effect waves-light"onClick={this.clickLeo}>Leo</button>
+      {
+        theTeam.map(member => {
+          return(
+            <div className='me s6 m6 l6'>
+              <img className="ipic circle responsive-img" alt='someone awesome' src={member.picture} />
+              <h5>{member.name}</h5>
+              <p className="desc">
+              {member.about}
+              </p>
+              <div className='contact'>
+              <a target="_blank" href={member.github}><img alt='github' src="https://img.icons8.com/ios/50/000000/github-filled.png"/></a>
+              <a target="_blank" href={member.linkedIn}><img alt='linkedin' src="https://img.icons8.com/ios/50/000000/linkedin-filled.png"/></a>
+              </div>
+            </div>
+          )
+        })
+      }
       </div>
 
-
-      <div ref={this.LeoDiv} className='me s6 m6 l6'>
-      <img className="ipic circle responsive-img" alt='someone awesome' src="https://media.licdn.com/dms/image/C5603AQHOAyGVTY4jFw/profile-displayphoto-shrink_800_800/0?e=1561593600&v=beta&t=wbjMusyW99PlvWoCke87xNkR1BuUvFFjhdBKgx1QnKQ"/>
-      <h5>Leo Lu</h5>
-      <p className="desc">
-      Something about yourself here
-      </p>
-      <div className='contact'>
-      <a href='https://github.com/Godsby'><img alt='github' src="https://img.icons8.com/ios/50/000000/github-filled.png"/></a>
-      <a href='https://www.linkedin.com/in/followingdreams/'><img alt='linkedin' src="https://img.icons8.com/ios/50/000000/linkedin-filled.png"/></a>
-      </div>
-      </div>
-
-      <div ref={this.michellDiv} className='me s6 m6 l6'>
-      <img className="ipic circle responsive-img" alt='someone awesome' src="https://media.licdn.com/dms/image/C4D03AQHNCQX_yyHPLQ/profile-displayphoto-shrink_800_800/0?e=1561593600&v=beta&t=cu32UAtRtaeO7ifc5aW3O0VPUDFZ2pP0YJ19O7YDYdg"/>
-      <h5>Michell Tejada</h5>
-      <p className="desc">
-      Something about yourself here
-      </p>
-      <div className='contact'>
-      <a href='https://github.com/mitejada'><img alt='github' src="https://img.icons8.com/ios/50/000000/github-filled.png"/></a>
-      <a href='https://www.linkedin.com/in/michell-tejada-8a78b5174/'><img alt='linkedin' src="https://img.icons8.com/ios/50/000000/linkedin-filled.png"/></a>
-      </div>
-      </div>
-
-      <div ref={this.rinatDiv} className='me s6 m6 l6'>
-      <img className="ipic circle responsive-img" alt='someone awesome' src="https://media.licdn.com/dms/image/C4E03AQElsAzXkY2U8A/profile-displayphoto-shrink_800_800/0?e=1561593600&v=beta&t=HhzLXqcBI5k_1Dh8WFiGlTMxcXeSGMhtrwcAjwHY8-4"/>
-      <h5>Rinat Tregerman</h5>
-      <p className="desc">
-      Something about yourself here
-      </p>
-      <div className='contact'>
-      <a href='https://github.com/RinatTr'><img alt='github' src="https://img.icons8.com/ios/50/000000/github-filled.png"/></a>
-      <a href='https://www.linkedin.com/in/rinat-tregerman/'><img alt='linkedin' src="https://img.icons8.com/ios/50/000000/linkedin-filled.png"/></a>
-      </div>
-      </div>
-
-      <div ref={this.jonDiv} className='me s6 m6 l6'>
-        <img className="circle responsive-img" alt='someone awesome' src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-0/c0.92.370.370a/p370x247/56927150_2215805478511880_8949892781715750912_n.jpg?_nc_cat=109&_nc_ht=scontent-lga3-1.xx&oh=3da8e13beb787f5156d72baf1f10cdc4&oe=5D6755CD"/>
-        <h5>Jonathan Andrade</h5>
-        <p className="desc">
-        Something about yourself here
-        </p>
-        <div className='contact'>
-          <a href='https://github.com/xpectro93'><img alt='github' src="https://img.icons8.com/ios/50/000000/github-filled.png"/></a>
-          <a href='https://www.linkedin.com/in/jonathan-andrade-571201175/'><img alt='linkedin' src="https://img.icons8.com/ios/50/000000/linkedin-filled.png"/></a>
-        </div>
-        <button  className="btn waves-effect waves-light hide-on-med-and-up"onClick={this.clickTop}>Top</button>
-      </div>
-
-
-      </div>
-
+      <button  className="btn waves-effect waves-light hide-on-med-and-up"onClick={this.clickTop}>Top</button>
 
       </div>
     )
