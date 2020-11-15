@@ -1,4 +1,4 @@
-import Goals from '../components/Goals';
+import Goals from '../components/Goals/Goals';
 import { connect } from 'react-redux';
 import { fetchSubmissionsPerGoal,
          fetchSubscriptionsPerGoal,

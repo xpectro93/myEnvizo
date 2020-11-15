@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import HomeContainer from './containers/HomeContainer';
 // import Navbar from './Navbar'
-import AboutUs from './components/AboutUs'
+import AboutUs from './components/AboutUs/AboutUs'
 import SignUpContainer from './containers/SignUpContainer'
 import LoginContainer from './containers/LoginContainer'
 import UserContainer from './containers/UserContainer';

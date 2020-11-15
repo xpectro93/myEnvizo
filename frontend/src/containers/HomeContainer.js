@@ -1,4 +1,4 @@
-import Home from "../components/Home";
+import Home from "../components/Home/Home.js";
 import { connect } from "react-redux";
 import { fetchTonnage } from "../actions/DataActions";
 

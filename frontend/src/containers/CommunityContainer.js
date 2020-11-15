@@ -1,7 +1,7 @@
 import { fetchAllCommunityActivity } from '../actions/CommunityAction'
 import { fetchAllGoalsPerCommunity } from '../actions/GoalsActions'
 import { connect } from 'react-redux';
-import CommunityProfile from '../components/CommunityProfile'
+import CommunityProfile from '../components/Community/CommunityProfile'
 
 const mapStateToProps = (state, ownProps) => {
   return {

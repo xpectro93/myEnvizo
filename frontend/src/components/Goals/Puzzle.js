@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/puzzle.css';
+import './puzzle.css';
 let imgUrl = "https://trello-attachments.s3.amazonaws.com/5ca1ffec97ca8169c9c3b9b6/512x512/3fe908db8c69290d251c7ea6d9cceb9b/2992451-512.png"
 
 const Puzzle = ({submissions, isCompleted}) => {

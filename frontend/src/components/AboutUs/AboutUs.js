@@ -1,5 +1,5 @@
 import React,  { Component } from 'react';
-import '../css/aboutus.css'
+import './aboutus.css'
 
 const theTeam = [
   {

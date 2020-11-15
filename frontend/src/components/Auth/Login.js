@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import M from 'materialize-css'
-import '../css/login.css'
+import './login.css'
 import { Redirect, Link } from 'react-router-dom'
 
 class Login extends Component {

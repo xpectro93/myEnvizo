@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Collapsible, CollapsibleItem} from 'react-materialize';
-import '../css/goalsList.css';
-import Prediction from './Prediction';
+import './goalsList.css';
+import Prediction from '../Prediction/Prediction';
 import SubscriberCount from './SubscriberCount';
-
-// const subjects = ['Monthly Tonnage', 'Air Pollution', 'Energy Consumption']
 
 class GoalsList extends Component {
 

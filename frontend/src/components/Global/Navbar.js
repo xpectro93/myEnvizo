@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import M from 'materialize-css';
-// import { Chip, Navbar as Nav } from 'react-materialize'
-import logo from './navbarLogo.png'
-import './css/navbar.css'
+import logo from '../../assets/navbarLogo.png'
+import './navbar.css'
 let defaultImg = 'https://png.pngtree.com/png-vector/20190909/ourmid/pngtree-outline-user-icon-png-image_1727916.jpg'
 class Navbar extends Component {
   constructor(){
@@ -27,9 +26,6 @@ class Navbar extends Component {
   }
 
 render(){
-  // if(!this.props.isLoggedIn) {
-  //   return <Redirect to='/'></Redirect>
-  // }
   const navbarTernary = this.props.auth.isLoggedIn ? (
     <ul id="nav-mobile" className="right hide-on-med-and-down">
       <div className='navbar_registration'>

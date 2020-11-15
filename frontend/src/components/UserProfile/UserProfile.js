@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Row, Col, Collection, CollectionItem, Icon, Button } from 'react-materialize';
 import { Link } from 'react-router-dom';
-import { borough } from "../util/util.js"
-import '../css/user.css';
+import { borough } from "../../util/util.js"
+import './user.css';
 import {
   FacebookIcon,
   FacebookShareButton,

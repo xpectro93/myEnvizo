@@ -1,4 +1,4 @@
-import SignUp from "../components/Signup";
+import SignUp from "../components/Auth/Signup.js";
 import { connect } from "react-redux";
 import {newUser, checkAuthenticateStatus, logout, loadCurrent } from "../actions/AuthActions";
 import { withRouter } from 'react-router-dom'

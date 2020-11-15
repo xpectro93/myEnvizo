@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { VisualDisplay } from './VisualDisplay'
 import { Tab, Tabs } from 'react-materialize'
-import '../css/home.css';
-import GoalsListContainer from '../containers/GoalsListContainer';
-import Leaderboard from './Leaderboard';
+import './home.css';
+import GoalsListContainer from '../../containers/GoalsListContainer';
+import Leaderboard from './Leaderboard.js';
 
 
 class Home extends Component {

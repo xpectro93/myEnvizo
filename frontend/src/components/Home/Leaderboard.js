@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { getLeaderboard  } from '../util/util';
-import "../css/leaderboard.css"
-import { borough } from '../util/util.js'
+import { getLeaderboard  } from '../../util/util';
+import "./leaderboard.css"
+import { borough } from '../../util/util.js'
 
 
 export default function Leaderboard (){

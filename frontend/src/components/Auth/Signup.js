@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import '../css/signup.css';
+import './signup.css';
 import { Redirect, Link } from 'react-router-dom';
 
-import { upload, validateEmail, validateUsername, validateSelect, areEqual, checkEvent } from '../util/functions.js'
+import { upload, validateEmail, validateUsername, validateSelect, areEqual, checkEvent } from '../../util/functions.js'
 
 const formDivCss = "input-field col s6"
 
@@ -32,30 +32,21 @@ function Signup (props) {
     currentProgress += hasUploaded ? 20: 0;
 
     setProgress(currentProgress)
-    /*
-    borough id = int
-    */
-    // let newuserData = {
-    //   username: this.state.username,
-    //   password:this.state.password,
-    //   email:this.state.email,
-    //   community_id:+this.state.borough,
-    //   avatar_img:this.state.avatar_img
-    // }
-
-    // if(this.state.password===this.state.passwordConfirm){
-    //   this.props.newUser(newuserData);
-
-    // }else{
-    //   // this.setState({
-    //   //   error:true
-    //   // })
-    // }
   }
 
   const createNewUser = e => {
     e.preventDefault();
-
+    if(checkEvent(e)) return
+    
+    const { email, username, password, borough } = e.target.parentElement.parentElement.elements;
+    let newuserData = {
+      username: username,
+      password:password,
+      email:email,
+      community_id:Number(borough),
+      avatar_img:image
+    }
+    props.newUser(newuserData);
   }
   const handleImage = e => {
     if(e.target.files[0]) {
@@ -86,7 +77,7 @@ function Signup (props) {
         </div>
       </div>
 
-    <form className={`${formDivCss} formContainer`}  onBlur={validateInputs}>
+    <form className={`${formDivCss} formContainer`} onSubmit={createNewUser} onBlur={validateInputs}>
       <div className={formDivCss}>
         <label htmlFor="signup_email">Email</label>
           <input

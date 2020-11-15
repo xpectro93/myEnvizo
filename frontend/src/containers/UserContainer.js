@@ -1,4 +1,4 @@
-import UserProfile from '../components/UserProfile';
+import UserProfile from '../components/UserProfile/UserProfile';
 import { connect } from 'react-redux';
 import { fetchAllGoals } from '../actions/GoalsActions';
 import { checkAuthenticateStatus } from '../actions/AuthActions';

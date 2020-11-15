@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Row, Col, Collection, CollectionItem, Icon, Button } from 'react-materialize';
-import '../css/community.css'
+import './community.css'
 import Timeago from 'react-timeago';
-import { borough } from "../util/util.js"
+import { borough } from "../../util/util.js"
 let defaultPic = 'https://png.pngtree.com/png-vector/20190909/ourmid/pngtree-outline-user-icon-png-image_1727916.jpg'
 
 const userAction = {
@@ -35,7 +35,6 @@ class CommunityProfile extends Component {
 
   getActivities = () => {
     const { activity } = this.props;
-    let comm_id = this.props.match.params.id;
     let img = activity.avatar_img ? activity.avatar_img : defaultPic
     if (activity) {
       const activityList = activity.map((activity, i) => {
@@ -105,7 +104,7 @@ class CommunityProfile extends Component {
               </CollectionItem>
             </Collection>
           </Col>
-          
+
           {/* Activityside */}
           <Col l={5} className='offset-l2 m10 s12 z-depth-3 community-activity'>
             <Collection header='Community Feed'>

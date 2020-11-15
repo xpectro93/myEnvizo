@@ -1,11 +1,11 @@
 
 import React, { Component } from 'react';
 import { Col , Row, ProgressBar } from 'react-materialize'
-import { getSingleSubscriptionIdForUserAndGoal, addSubscription, deleteSubscription } from '../util/util';
-import { addSubmission } from '../util/util'
-import { upload } from "../util/functions.js"
+import { getSingleSubscriptionIdForUserAndGoal, addSubscription, deleteSubscription } from '../../util/util';
+import { addSubmission } from '../../util/util'
+import { upload } from "../../util/functions.js"
 import Puzzle from './Puzzle'
-import '../css/singlegoal.css';
+import './singlegoal.css';
 
 import axios from 'axios'
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { getSingleSubscriptionIdForUserAndGoal, addSubscription, deleteSubscription } from '../util/util';
+import { getSingleSubscriptionIdForUserAndGoal, addSubscription, deleteSubscription } from '../../util/util';
 import GoalDisplay from './GoalDisplay'
-import '../css/singlegoal.css';
+import './singlegoal.css';
 
 export default class CommunityGoal extends Component {
   state = {
