@@ -30,10 +30,10 @@ export const isValidPunctuation = input => {
 
 export const validateEmail = email => {
     if(!email) return false;
-
-    let isOnlyLatinChar = email.match(/[^a-z0-9@[.]]/);
+    let regExFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    let isOnlyLatinChar = email.match(regExFormat);
     let [username, domain] = email.split('@')
-    
+
     if(!domain) return false;
     let isValidPunctuationUser = true;
     let isValidPunctuationDomain = false;
@@ -46,7 +46,7 @@ export const validateEmail = email => {
     }
 
     return(
-          !isOnlyLatinChar && 
+          isOnlyLatinChar && 
           isValidPunctuationDomain && 
           isValidPunctuationUser && 
           emailLengthCheck

@@ -13,12 +13,10 @@ function Signup (props) {
   const [ progress, setProgress ] = useState(0);
   const [ hasUploaded, setHasUploaded ] =useState(false);
   const passRef = useRef(null)
-  const submitNewUser = e => {
-
-      e.preventDefault();
-      if(checkEvent(e)) {
-      return
-    }
+  const validateInputs = e => {
+    e.preventDefault();
+    if(checkEvent(e)) return
+    
     const { email, username, password, passwordConfirm, borough } = e.target.parentElement.parentElement.elements;
 
     let currentProgress = 0;
@@ -90,7 +88,7 @@ function Signup (props) {
         <label htmlFor="volume">Progress{` ${progress}%`}</label>
       </div>
 
-    <form className={`${formDivCss} formContainer`} onFocus={submitNewUser} onBlur={submitNewUser}>
+    <form className={`${formDivCss} formContainer`}  onBlur={validateInputs}>
       <div className={formDivCss}>
         <label htmlFor="signup_email">Email</label>
           <input
