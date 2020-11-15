@@ -53,6 +53,10 @@ function Signup (props) {
     // }
   }
 
+  const createNewUser = e => {
+    e.preventDefault();
+
+  }
   const handleImage = e => {
     if(e.target.files[0]) {
       setImage(e.target.files[0])
@@ -65,7 +69,7 @@ function Signup (props) {
     setHasUploaded(true);
     setTimeout(()=> {
       passRef.current.focus()
-    },1000)
+    },500)
     
     
     
@@ -78,14 +82,10 @@ function Signup (props) {
     <div className='container SignUpContainer'>
       <div className='container'>
       <h4>Sign Up</h4>
-        <input 
-          type="range" 
-          id="volume" 
-          name="progress"
-          value={progress}
-          disabled
-          min="0" max="100" />
-        <label htmlFor="volume">Progress{` ${progress}%`}</label>
+        <label htmlFor="progress">Progress{` ${progress}%`}</label>
+        <div className={"my-range"}>
+          <div className={"progress"} style={{width:`${progress}%`,background:`${ progress === 100 ? "rgb(1,53,107)" : "rgb(142,228,175)"}`}}  name="progress">  </div>
+        </div>
       </div>
 
     <form className={`${formDivCss} formContainer`}  onBlur={validateInputs}>

@@ -31,7 +31,6 @@ class Login extends Component {
 }
   logout = e => {
     this.props.logout()
-    // window.location.reload();
     this.props.history.push('/')
   }
 

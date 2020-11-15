@@ -52,7 +52,16 @@ export const validateEmail = email => {
           emailLengthCheck
           )
   }
-export const validateUsername = username => username.length > 1 && username.length < 33; 
+export const validateUsername = username => {
+    const letters = /^[0-9a-zA-Z]+$/;
+    if(username.match(letters)){
+        return username.length > 1 && username.length < 33
+    }
+    else {
+        return false;
+    }
+
+}; 
 
 export const areEqual = (string1, string2) => {
     if(string1 !== "")
