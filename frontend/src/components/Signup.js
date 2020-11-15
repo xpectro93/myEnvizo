@@ -1,15 +1,38 @@
 import React, { Component, useState, useEffect } from 'react';
 import '../css/signup.css';
 import { Redirect, Link } from 'react-router-dom';
-import { Select } from 'react-materialize';
+// import { Select } from 'react-materialize';
 
 import { upload } from '../util/functions.js'
+
+const formDivCss = "input-field col s6"
+
+
 
 function Signup (props) {
   const [ image, setImage ] = useState(null);
   const [ progress, setProgress ] = useState(0);
   const submitNewUser = e => {
-    debugger
+    e.preventDefault();
+    // debugger
+    const { email, username, password, passwordConfirm, borough } = e.target.parentElement.parentElement.elements;
+    console.log( email.value, username.value, password.value, passwordConfirm.value, borough.value)
+    // let newuserData = {
+    //   username: this.state.username,
+    //   password:this.state.password,
+    //   email:this.state.email,
+    //   community_id:+this.state.borough,
+    //   avatar_img:this.state.avatar_img
+    // }
+
+    // if(this.state.password===this.state.passwordConfirm){
+    //   this.props.newUser(newuserData);
+
+    // }else{
+    //   // this.setState({
+    //   //   error:true
+    //   // })
+    // }
   }
 
   const handleImage = e => {
@@ -37,11 +60,11 @@ function Signup (props) {
           value={progress}
           disabled
           min="0" max="100" />
-      <label htmlFor="volume">Progress{` ${progress}%`}</label>
-    </div>
+        <label htmlFor="volume">Progress{` ${progress}%`}</label>
+      </div>
 
-    <form className='input-field col s6 FormContainer'onBlur={submitNewUser}>
-      <div className='input-field col s6'>
+    <form className={`${formDivCss} formContainer`}onBlur={submitNewUser}>
+      <div className={formDivCss}>
         <label htmlFor="signup_email">Email</label>
           <input
             type='email'
@@ -52,7 +75,7 @@ function Signup (props) {
           />
       </div>
 
-      <div className='input-field col s6'>
+      <div className={formDivCss}>
         <label htmlFor="username">Username</label>
         <input
           type='text'
@@ -62,18 +85,21 @@ function Signup (props) {
         />
       </div>
 
-     
-        <Select name='borough' required>
-          <option value='0'>select Borough</option>
+      <div className={formDivCss}>
+      <select name='borough' required>
+          <option value='0'>Select Borough</option>
           <option value='1'>Manhattan</option>
           <option value='2'>Queens</option>
           <option value='3'>Bronx</option>
           <option value='4'>Brooklyn</option>
           <option value='5'>Staten Island</option>
-        </Select>
- 
+      </select>
 
-      <div className='input-field col s6'>
+      </div>
+        
+ 
+      
+      <div className={formDivCss}>
         <label htmlFor="password">Password</label>
         <input
           type='password'
@@ -83,7 +109,7 @@ function Signup (props) {
         />
       </div>
 
-      <div className='input-field col s6'>
+      <div className={formDivCss}>
         <label htmlFor="passwordConfirm">Confirm Password</label>
         <input
           type='password'
@@ -93,8 +119,7 @@ function Signup (props) {
         />
       </div>
            
-      <div className="file-field input-field">
-        <div className="btn-small waves-effect waves-light">
+      <div className={formDivCss}>
           <span>Select Image</span>
           <input
             type="file"
@@ -102,7 +127,7 @@ function Signup (props) {
             accept=".jpg, .jpeg, .png"
             onChange={handleImage}
           />
-        </div>
+
       </div>
       {image ? <button className="btn-small waves-effect waves-light" onClick={uploadImage}>Upload</button> : null}
     </form>
