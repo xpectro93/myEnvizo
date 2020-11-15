@@ -19,7 +19,6 @@ export default class SingleGoal extends Component {
 
   componentDidMount() {
     let { loggedUser } = this.props;
-    // let { loggedUserSubId } = this.state;
     let userId = loggedUser.id;
     let goalId = this.props.match.params.goal_id;
     this.getGoal()

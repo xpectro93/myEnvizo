@@ -16,12 +16,12 @@ class CommunityProfile extends Component {
 
   click = e => {
     e.preventDefault();
-    // this.props.history.push(/goal/${goals.id}')
   }
 
   getActivities = () => {
     const { activity } = this.props;
     let comm_id = this.props.match.params.id;
+    console.log("avatar0",activity.avatar_img)
     let img = activity.avatar_img ? activity.avatar_img : defaultPic
     if (activity) {
       const activityList = activity.map((activity, i) => {

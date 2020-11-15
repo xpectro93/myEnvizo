@@ -3,9 +3,10 @@ import '../css/signup.css';
 import { Redirect, Link } from 'react-router-dom';
 import { Select } from 'react-materialize';
 
+import { upload } from '../util/functions.js'
 
 
-import { storage } from '../firebase';
+
 
 
 
@@ -47,29 +48,33 @@ class Signup extends Component {
     const { image } = this.state
 
 
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    // const uploadTask = storage.ref(`images/${image.name}`).put(image);
 
-    uploadTask.on(
-      "stage_changed",
-      snapshot => {},
-      error => {
-        console.log(error);
-      },
-      ()=> {
-        storage
-          .ref("images")
-          .child(image.name)
-          .getDownloadURL()
-          .then(url => {
-            this.setState({ avatar_img:url, didUpload: true })
+    // uploadTask.on(
+    //   "stage_changed",
+    //   snapshot => {},
+    //   error => {
+    //     console.log(error);
+    //   },
+    //   ()=> {
+    //     storage
+    //       .ref("images")
+    //       .child(image.name)
+    //       .getDownloadURL()
+    //       .then(url => {
+    //         this.setState({ avatar_img:url, didUpload: true })
           
-          })
-          .catch(err => console.log(err))
+    //       })
+    //       .catch(err => console.log(err))
 
-      }
-    )
+    //   }
+    // )
+    upload(image, this.successfulUpload)
 
-
+  }
+  successfulUpload = (url) => {
+    debugger
+    this.setState({ avatar_img:url, didUpload: true })
   }
 
   onSubmitNewUser = e => {

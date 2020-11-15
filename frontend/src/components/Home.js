@@ -83,9 +83,6 @@ class Home extends Component {
             <Tab title="Leaderboard">
               <div className="container"><Leaderboard/></div>
             </Tab>
-            <Tab title="Energy Consumption">
-              <div className="container"><h5>Coming soon ...</h5></div>
-            </Tab>
           </Tabs>
           </div>
           {subjects === '00'? this.dropDown():''}
