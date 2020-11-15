@@ -12,6 +12,7 @@ const formDivCss = "input-field col s6"
 function Signup (props) {
   const [ image, setImage ] = useState(null);
   const [ progress, setProgress ] = useState(0);
+  const [ hasUploaded, setHasUploaded ] =useState(false)
   const submitNewUser = e => {
     e.preventDefault();
     // debugger
@@ -43,6 +44,7 @@ function Signup (props) {
   const uploadImage = e => {
     e.preventDefault();
     upload(image, setImage);
+    setHasUploaded(true);
   }
   useEffect(()=> {
     console.log(props)
@@ -119,17 +121,33 @@ function Signup (props) {
         />
       </div>
            
-      <div className={formDivCss}>
-          <span>Select Image</span>
+      <div className={`img-container`} 
+        style ={{display:"flex", alignContent:"center",justifyContent:"space-between"}}>
+        
+        
+        {image ?
+        <>
+          <button className="btn-large waves-effect waves-light" onClick={uploadImage}>Upload</button>
+          {hasUploaded?<p id="msg-upload">Upload Successful</p>: null}
+        </>
+        : 
+        <>
+        <label id={"upload-button"} htmlFor={'file-upload'}> SELECT IMAGE</label>
           <input
+            id={"file-upload"}
             type="file"
             name="avatar"
             accept=".jpg, .jpeg, .png"
             onChange={handleImage}
           />
-
+          
+        </>}
+    
       </div>
-      {image ? <button className="btn-small waves-effect waves-light" onClick={uploadImage}>Upload</button> : null}
+      <button 
+        className={`btn-large waves-effect waves-light ${hasUploaded ? "" : "disabled"}`} 
+        type="submit" name="action">Sign Up<i className="material-icons right">send</i>
+      </button>
     </form>
     {props.isLoggedIn ? 
       <Redirect to={`/profile/${props.auth.userId}`}></Redirect>
