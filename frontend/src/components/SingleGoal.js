@@ -3,11 +3,12 @@ import React, { Component } from 'react';
 import { Col , Row, ProgressBar } from 'react-materialize'
 import { getSingleSubscriptionIdForUserAndGoal, addSubscription, deleteSubscription } from '../util/util';
 import { addSubmission } from '../util/util'
+import { upload } from "../util/functions.js"
 import Puzzle from './Puzzle'
 import '../css/singlegoal.css';
+
 import axios from 'axios'
 
-import { storage } from '../firebase';
 
 export default class SingleGoal extends Component {
   state = {
@@ -59,7 +60,7 @@ export default class SingleGoal extends Component {
         })
       })
   }
-  //normalized desc
+
   nd = (description) => {
    let arr = (description).split('@$'),
     obj = {
@@ -76,40 +77,25 @@ export default class SingleGoal extends Component {
   }
 
   handleUpload = (e) => {
-    let { loggedUser, match, submissions } = this.props;
-    let { loggedUserSubId } = this.state;
-    let sub = { img_url:"" , goal_id: match.params.goal_id, sub_count: submissions.length, subscriptions_id: loggedUserSubId }
-
     e.preventDefault();
     const { image } = this.state
+    upload(image, this.successfulUpload)
 
 
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
-
-      uploadTask.on(
-        "stage_changed",
-        snapshot => {},
-        error => {
-          console.log(error);
-        },
-        ()=> {
-          storage
-            .ref("images")
-            .child(image.name)
-            .getDownloadURL()
-            .then(url => {
-                 this.setState({didUpload: true })
-                 sub.img_url = url;
-                 addSubmission(loggedUser.id, sub)
-            })
-            .then(()=> {
-              this.props.fetchSubmissionsPerGoal(match.params.goal_id)
-            })
-            .catch(err => console.log(err))
-
-        }
-      )
-
+  }
+  successfulUpload = (url) => {
+    let { loggedUser, match, submissions } = this.props;
+    let { loggedUserSubId } = this.state;
+    let newSub = 
+    { img_url:"" , 
+      goal_id: match.params.goal_id,
+      sub_count: submissions.length,
+      subscriptions_id: loggedUserSubId
+    }
+    this.setState({didUpload: true })
+    newSub.img_url = url;
+    addSubmission(loggedUser.id, newSub)
+    this.props.fetchSubmissionsPerGoal(match.params.goal_id)
   }
 
   refreshSubscriptions = (userId, goalId) => {
@@ -156,22 +142,23 @@ export default class SingleGoal extends Component {
           <div className="container puzzle-area">
             {goalInfo[0].completed
               ? ""
-              : loggedUserSubId ? (<div className="file-field input-field">
-                                     <div className="btn-small waves-effect waves-light">
-                                      <span>Upload photo</span>
-                                        <input
-                                          type="file"
-                                          name="avatar"
-                                          accept=".jpg, .jpeg, .png"
-                                          onChange={this.handleUploadChange}
-                                        />
-                                       
-                                    </div>
-                                    <div className="file-path-wrapper">
-                                      <input className="file-path validate" name='avatarpath' type="text" />
-                                    </div>
-                                    {this.state.image? <button className="btn-small waves-effect waves-light" onClick={this.handleUpload}> Upload</button> :null}
-                                  </div>)
+              : loggedUserSubId ? 
+                (<div className="file-field input-field">
+                  <div className="btn-small waves-effect waves-light">
+                  <span>Upload photo</span>
+                    <input
+                      type="file"
+                      name="avatar"
+                      accept=".jpg, .jpeg, .png"
+                      onChange={this.handleUploadChange}
+                    />
+                    
+                </div>
+                <div className="file-path-wrapper">
+                  <input className="file-path validate" name='avatarpath' type="text" />
+                </div>
+                {this.state.image? <button className="btn-small waves-effect waves-light" onClick={this.handleUpload}> Upload</button> :null}
+              </div>)
                                   : <div className="file-field input-field"><h5>Subscribe to upload a photo!</h5></div>
               }
             <Puzzle submissions={submissions} isCompleted={goalInfo[0].completed} />
