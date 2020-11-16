@@ -10,8 +10,9 @@ class Login extends Component {
           }
 
   componentDidMount(){
-  this.props.checkAuthenticateStatus()
-  M.updateTextFields()
+    //check if user is logged in
+    this.props.checkAuthenticateStatus()
+     M.updateTextFields()
   }
 
   handleChange = e => {
@@ -21,14 +22,15 @@ class Login extends Component {
   }
 
   onSubmitLogIn = e => {
-  e.preventDefault();
-  let logInData = {
-    username: this.state.username,
-    password: this.state.password
+    e.preventDefault();
+    let logInData = {
+      username: this.state.username,
+      password: this.state.password
+    }
+    this.props.logIn(logInData);
   }
-  this.props.logIn(logInData);
 
-}
+  //logs user out and sends userm to landing page
   logout = e => {
     this.props.logout()
     this.props.history.push('/')

@@ -44,11 +44,11 @@ export default class SingleGoal extends Component {
     let userId = loggedUser.id;
     let goalId = match.params.goal_id;
       if (e.target.innerText.slice(0,3) === "SUB") {
-        addSubscription({ user_id: userId , goal_id: goalId }).then((res) => {
+        addSubscription({ user_id: userId , goal_id: goalId }).then(() => {
           this.refreshSubscriptions(userId, goalId);
         })
       } else {
-        deleteSubscription(loggedUserSubId).then((res) => {
+        deleteSubscription(loggedUserSubId).then(() => {
           this.refreshSubscriptions(userId, goalId);
         })
       }

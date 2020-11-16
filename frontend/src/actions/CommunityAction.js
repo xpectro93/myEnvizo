@@ -8,7 +8,7 @@ export const receiveAllCommunityActivity = activity => {
     activity
   }
 }
-
+//gets All community activity based on community id
 export const fetchAllCommunityActivity = (community_id) => dispatch => {
   return Util.getAllActivityForACommunity(community_id)
   .then(res => {

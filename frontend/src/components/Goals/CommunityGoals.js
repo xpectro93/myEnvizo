@@ -47,6 +47,7 @@ export default class CommunityGoal extends Component {
                 return this.setState({ loggedUserSubId: newValue });
             })
   }
+    //update props based on users actions
     refreshProps = () => {
       let {match} = this.props;
       if (this.props.loggedUser.id) {
@@ -82,6 +83,7 @@ export default class CommunityGoal extends Component {
           isSub = userSub ? true : false ;
         }
       }
+      //check if user is subbed and get subId for user if they are subbed
       return [isSub, userSub];
     }
     submissionCount = (goalId) => {
@@ -107,6 +109,8 @@ export default class CommunityGoal extends Component {
 
   render() {
     let { community } = this.props;
+
+    //check if the community goals have loaded, and if they are create goal display per goal
     let mapGoals = community.goals ? community.goals.data.map(goal => {
       return <GoalDisplay
                 title={goal.title}

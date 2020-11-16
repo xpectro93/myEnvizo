@@ -20,6 +20,7 @@ class Navbar extends Component {
   }
 
 render(){
+  //create Navbar based on if user is logged in or not
   const navbarTernary = this.props.auth.isLoggedIn ? (
     <ul id="nav-mobile" className="right hide-on-med-and-down">
       <div className='navbar_registration'>

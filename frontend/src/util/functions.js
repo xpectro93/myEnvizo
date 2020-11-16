@@ -78,7 +78,7 @@ export const checkEvent = e => {
         e.target.parentElement.parentElement.elements
         ) {
             return false;
-        }
+    }
     else {
         return true
     };

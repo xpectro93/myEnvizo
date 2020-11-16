@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import HomeContainer from './containers/HomeContainer';
-// import Navbar from './Navbar'
 import AboutUs from './components/AboutUs/AboutUs'
 import SignUpContainer from './containers/SignUpContainer'
 import LoginContainer from './containers/LoginContainer'
 import UserContainer from './containers/UserContainer';
 import GoalsContainer from './containers/GoalsContainer'
-import NavbarContainer from './containers/NavbarContainer'
 import CommunityContainer from './containers/CommunityContainer'
+
+import NavbarContainer from './containers/NavbarContainer'
+import Error from "./components/Global/Error.js"
 import './App.css';
 
 class App extends Component {
@@ -25,6 +26,7 @@ class App extends Component {
           <Route path='/goal/:goal_id' component={GoalsContainer}/>
           <Route path='/community/:id' component={CommunityContainer}/>
           <Route path='/goals/community/:community_id' component={GoalsContainer}/>
+          <Route path="/*" component={Error} />
         </Switch>
       </div>
     );

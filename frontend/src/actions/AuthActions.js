@@ -1,4 +1,3 @@
-// import * as Util from '../util.js';
 import axios from 'axios'
 import Auth from "../util/Auth.js"
 
@@ -25,7 +24,7 @@ export const checkAuthenticateStatus = () => dispatch => {
   axios
     .get("/api/sessions/isLoggedIn").then(user => {
 
-    if (user.data.id === +Auth.getToken()){
+    if (user.data.id === Number(Auth.getToken())){
 
 
       dispatch({
@@ -35,7 +34,8 @@ export const checkAuthenticateStatus = () => dispatch => {
 
       dispatch(loadCurrent())
 
-    } else {
+    } 
+    else {
       if (user.data.id) {
         logout()
       } else {
@@ -46,6 +46,8 @@ export const checkAuthenticateStatus = () => dispatch => {
 
   ;
 }
+
+//creates new user takes in an object as input
 export const newUser = newUserData => dispatch => {
   axios
   .post("/api/sessions/new", newUserData)
@@ -54,7 +56,7 @@ export const newUser = newUserData => dispatch => {
         type:NEW_USER,
         user:res
       })
-
+      //after creating user, logs in the new user.
       axios
       .post("/api/sessions/login",{username:newUserData.username, password:newUserData.password})
         .then(res => {
@@ -65,18 +67,18 @@ export const newUser = newUserData => dispatch => {
           })
         })
       .then(()=> {
-        // console.log('in new User');
         checkAuthenticateStatus()
       })
     })
 
 }
 
+//Logsin user
 export const logIn = logInData => dispatch => {
   axios
   .post("/api/sessions/login", logInData)
     .then(res => {
-      // console.log('res of login', res.data);
+
       Auth.authenticateUser(res.data.id);
       dispatch({
         type:LOG_IN,
@@ -85,7 +87,7 @@ export const logIn = logInData => dispatch => {
 
     })
     .then(()=> {
-      // console.log('check auth at login');
+
       checkAuthenticateStatus();
 
     })
@@ -94,7 +96,7 @@ export const logIn = logInData => dispatch => {
     })
 }
 
-
+//loads current user based on the local storage token.
 export const loadCurrent = () => dispatch => {
   axios
   .get(`/api/users/${+Auth.getToken()}`)
