@@ -5,13 +5,7 @@ import logo from '../../assets/navbarLogo.png'
 import './navbar.css'
 let defaultImg = 'https://png.pngtree.com/png-vector/20190909/ourmid/pngtree-outline-user-icon-png-image_1727916.jpg'
 class Navbar extends Component {
-  constructor(){
-    super()
-    this.state = {
-
-    }
-  }
-
+  
   componentDidMount(){
     this.props.checkAuthenticateStatus();
     document.addEventListener('DOMContentLoaded', function () {
@@ -20,7 +14,7 @@ class Navbar extends Component {
     });
   }
 
-  logout = (event) => {
+  logout = () => {
     this.props.logout()
     window.location='/'
   }

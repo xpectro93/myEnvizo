@@ -19,6 +19,7 @@ export default function Leaderboard (){
     },[])
     return(
     <div className="container">
+        <h2> Top Contributers</h2>
         <ol className="leaderboard">
         {topUsers ?
            topUsers.map(user => {

@@ -45,9 +45,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use(express.static(path.join(__dirname, 'public')));
-
-
 //route usage
 app.use('/api/users', usersRouter);
 app.use('/api/submissions', submissionsRouter);

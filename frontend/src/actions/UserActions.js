@@ -33,5 +33,5 @@ export const fetchUserActivity = user_id => dispatch => {
   .then(res => {
     return dispatch(receiveUserActivity(res.data.data))
   })
-  .catch(err => console.log(Error))
+  .catch(err => console.log(err))
 }
