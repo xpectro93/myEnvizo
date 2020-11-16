@@ -7,10 +7,11 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import RootReducer from './reducers/RootReducer'
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
+// logger is midddleware for dev purposes only
+// import logger from 'redux-logger';
 
 import * as serviceWorker from './serviceWorker';
-const store = createStore(RootReducer, {}, applyMiddleware(thunk, logger))
+const store = createStore(RootReducer, {}, applyMiddleware(thunk))
 
 ReactDOM.render(<Provider store={store}>
                   <BrowserRouter>

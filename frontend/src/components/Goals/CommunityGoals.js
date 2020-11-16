@@ -111,8 +111,9 @@ export default class CommunityGoal extends Component {
     let { community } = this.props;
 
     //check if the community goals have loaded, and if they are create goal display per goal
-    let mapGoals = community.goals ? community.goals.data.map(goal => {
+    let mapGoals = community.goals ? community.goals.data.map((goal,i) => {
       return <GoalDisplay
+                key={`${goal.title}-${i}`}
                 title={goal.title}
                 goalId={goal.id}
                 usernames={this.getUserNames(goal.id)}

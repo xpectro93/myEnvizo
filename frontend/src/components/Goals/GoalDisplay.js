@@ -16,7 +16,7 @@ const GoalDisplay = ({title, usernames, goalId, percAll, handleSubscribe, isSubs
       </div>
         <Col s={12}>
         <h4>{percAll}%</h4>
-        <ProgressBar className={percAll > 99 ? "finished":'not-finished'} progress={percAll} />
+        <ProgressBar className={percAll > 99 ? "finished":'not-finished'} progress={Number(percAll)} />
         </Col>
 
         <ul>

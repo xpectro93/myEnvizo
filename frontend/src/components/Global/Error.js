@@ -13,7 +13,8 @@ export default function Error() {
         <div className={"container"} style={style}>
             
             <h2>404 NOT FOUND</h2>
-            <h1>Sorry, this page doesn't seem to exist</h1>
+            <h1>Halt! Who goes there? You shouldn't be here</h1>
+            <h3>Make like a tree and leaf...</h3>
             <button onClick={()=> window.location = "/" } className={btnStyle} >Send me back home</button>
         </div>
     )

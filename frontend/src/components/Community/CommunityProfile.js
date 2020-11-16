@@ -30,9 +30,9 @@ class CommunityProfile extends Component {
 
   getActivities = () => {
     const { activity } = this.props;
-    let img = activity.avatar_img ? activity.avatar_img : defaultPic
     if (activity) {
       const activityList = activity.map((activity, i) => {
+        let img = activity.avatar_img ? activity.avatar_img : defaultPic
         return (
           <CollectionItem className='avatar' key={i +activity.type} >
             <img src={img} alt="" className="circle" />

@@ -11,19 +11,16 @@ export default function Leaderboard (){
     useEffect(()=> {
         const getData = async()=> {
             let resp = await getLeaderboard();
-            console.log(resp.data.top_users);
-
             setTopUsers(resp.data.top_users);
         }
         getData();
     },[])
     return(
     <div className="container">
-        <h2> Top Contributers</h2>
+        <h2> Top Contributors</h2>
         <ol className="leaderboard">
         {topUsers ?
            topUsers.map(user => {
-               console.log(user)
             return (
                 <li className="placing" 
                     style={{

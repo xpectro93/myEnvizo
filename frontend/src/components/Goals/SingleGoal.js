@@ -19,7 +19,6 @@ export default class SingleGoal extends Component {
     }
 
   componentDidMount() {
-    console.log('props', this.props)
     let { loggedUser } = this.props;
     let userId = loggedUser.id;
     let goalId = this.props.match.params.goal_id;
