@@ -4,7 +4,7 @@ Envizo is an app to increase visibility of environmental issues as a community i
 
 [Live-version](https://envizo.herokuapp.com)
 
-![Home-page](https://s3.amazonaws.com/envizo-img/envizoThumb.jpg)
+![Home-page](https://firebasestorage.googleapis.com/v0/b/upload-80d65.appspot.com/o/images%2Fenvizo%20(2).png?alt=media&token=2f1458c5-0885-4d8a-9021-97a5316d8b4e)
 ## Motivation
 We care about the environment, and we wanted to create an app to encourage users to change their habits by increasing visibility.
 
