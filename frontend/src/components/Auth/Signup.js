@@ -52,7 +52,7 @@ function Signup (props) {
     const username = e.target.children[1].childNodes[1].value
     const borough = e.target.children[2].childNodes[0].value
     const password = e.target.children[3].childNodes[1].value
-    console.log( email, username, password, borough) 
+    
     let newuserData = {
       username: username,
       password:password,
