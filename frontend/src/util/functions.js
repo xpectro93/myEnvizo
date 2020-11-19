@@ -72,15 +72,10 @@ export const areEqual = (string1, string2) => {
 export const validateSelect = option => Number(option) !== 0
 
 export const checkEvent = e => {
-    if(e.target &&
+    return (e.target &&
         e.target.parentElement &&
         e.target.parentElement.parentElement &&
         e.target.parentElement.parentElement.elements
-        ) {
-            return false;
-    }
-    else {
-        return true
-    };
+        ) 
 
 }

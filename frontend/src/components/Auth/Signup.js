@@ -18,9 +18,8 @@ function Signup (props) {
   //combines all input validations to check if all form inputs are valid
   const validateInputs = e => {
     e.preventDefault();
-    if(checkEvent(e)) return
-    
-    const { email, username, password, passwordConfirm, borough } = e.target.parentElement.parentElement.elements;
+    if(checkEvent(e)){
+      const { email, username, password, passwordConfirm, borough } = e.target.parentElement.parentElement.elements;
 
     let currentProgress = 0;
     //adds 20 points per each validated user input
@@ -35,14 +34,25 @@ function Signup (props) {
     currentProgress += hasUploaded ? 20: 0;
 
     setProgress(currentProgress)
+    }
+    else return
+    
+    
   }
 
   //create user based on input
   const createNewUser = e => {
+    debugger
     e.preventDefault();
-    if(checkEvent(e)) return
-    
-    const { email, username, password, borough } = e.target.parentElement.parentElement.elements;
+    if(checkEvent(e)) {
+      console.log("returning")
+      return
+    }
+    const email = e.target.children[0].childNodes[1].value
+    const username = e.target.children[1].childNodes[1].value
+    const borough = e.target.children[2].childNodes[0].value
+    const password = e.target.children[3].childNodes[1].value
+    console.log( email, username, password, borough) 
     let newuserData = {
       username: username,
       password:password,
@@ -158,7 +168,7 @@ function Signup (props) {
       </div>
       <div className={formDivCss} style={{display:"flex", justifyContent:"center"}}>
       <button 
-        className={` ${buttonCss} ${hasUploaded && progress === 100 ? "" : "disabled"}`} 
+        className={` ${buttonCss} ${hasUploaded && progress === 100 ? "" : ""}`} 
         type="submit" name="action">Sign Up<i className="material-icons right">send</i>
       </button>
       </div>

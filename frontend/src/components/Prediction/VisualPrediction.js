@@ -37,10 +37,10 @@ export const VisualPrediction = (props) => {
 
   return (
     <div className='VisualWrapper'>
-    <img id='people'src={people} alt='people'/>
-    <div id='garbageList'>
-    {garbImg.reverse()}
-    </div>
+      <img id='people'src={people} alt='people'/>
+      <div id='garbageList'>
+      {garbImg.reverse()}
+      </div>
     </div>
   )
 }
